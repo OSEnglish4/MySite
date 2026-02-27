@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -26,9 +26,9 @@
         }
         /* Яркая цветовая палитра */
         :root {
-            --deep-green: #0b7b6b;       /* насыщенный зеленый */
+            --deep-green: #0b7b6b;
             --bright-green: #10b090;
-            --neon-orange: #ff8c42;      /* яркий оранжевый */
+            --neon-orange: #ff8c42;
             --light-orange: #fff1e0;
             --soft-bg: #f0f7f4;
             --card-white: #ffffff;
@@ -113,7 +113,9 @@
             .nav-links { gap: 1.5rem; justify-content: center; }
         }
 
-        /* Canvas для частиц (блестки) */
+        /* ============================================
+           CANVAS ДЛЯ ЭФФЕКТА БЛЕСТОК (ЗА КУРСОРОМ)
+           ============================================ */
         #sparkle-canvas {
             position: fixed;
             top: 0;
@@ -331,7 +333,7 @@
             -webkit-text-stroke: 1px var(--deep-green);
         }
 
-        /* НОВЫЙ БЛОК: ОТЗЫВЫ */
+        /* ОТЗЫВЫ */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -389,7 +391,7 @@
             color: #5f7d76;
         }
 
-        /* НОВЫЙ БЛОК: МАТЕРИАЛЫ */
+        /* МАТЕРИАЛЫ */
         .materials-showcase {
             display: flex;
             flex-wrap: wrap;
@@ -435,7 +437,9 @@
             font-size: 0.9rem;
         }
 
-        /* Бронирование */
+        /* ============================================
+           БРОНИРОВАНИЕ - ИСПРАВЛЕННАЯ ВЕРСИЯ
+           ============================================ */
         .booking-panel {
             background: linear-gradient(145deg, #ffffff, #f4fff9);
             border-radius: 50px;
@@ -445,16 +449,74 @@
             border: 4px solid var(--deep-green);
             position: relative;
         }
+        .booking-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .booking-header p {
+            color: #5f7d76;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
         .booking-frame {
             border-radius: 40px;
             overflow: hidden;
             background: white;
             height: 580px;
+            border: 2px solid var(--light-orange);
         }
         .booking-frame iframe {
             width: 100%;
             height: 100%;
             border: none;
+        }
+        /* Кнопка-заглушка, если iframe не загрузился */
+        .booking-fallback {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+        .booking-fallback.active {
+            display: block;
+        }
+        .booking-fallback-btn {
+            background: var(--neon-orange);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(255, 140, 66, 0.4);
+        }
+        .booking-fallback-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 140, 66, 0.5);
+        }
+        /* Дополнительная кнопка под iframe */
+        .booking-direct-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .booking-direct-link a {
+            background: var(--deep-green);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .booking-direct-link a:hover {
+            background: var(--neon-orange);
+            transform: scale(1.03);
         }
 
         /* Контакты */
@@ -585,7 +647,9 @@
     </style>
 </head>
 <body>
-    <!-- Холст для частиц -->
+    <!-- ============================================
+         ХОЛСТ ДЛЯ ЭФФЕКТА БЛЕСТОК (ЗА КУРСОРОМ)
+         ============================================ -->
     <canvas id="sparkle-canvas"></canvas>
 
     <!-- Модальные окна -->
@@ -645,7 +709,6 @@
                     </div>
                     <div class="hero-photo">
                         <div class="photo-frame">
-                            <!-- ⚠️ ВСТАВЬТЕ ССЫЛКУ НА ВАШЕ ФОТО ИЗ ВК В src -->
                             <img src="https://sun9-37.userapi.com/s/v1/ig2/Zx29c_NDWg3Acb56a78_2mggBS1Zst9upn5S0tRan0AEkeDD0KLeAqVGCf9Kr8aiSHrQ9K6-OTWOJWcboVxXDEaU.jpg?quality=95&as=32x38,48x57,72x86,108x129,160x191,240x287,360x430,480x574,540x646,640x765,720x861,1080x1291,1280x1531,1440x1722&from=bu&cs=1440x0" alt="Ольга Суворова">
                         </div>
                     </div>
@@ -673,7 +736,7 @@
                 </div>
             </section>
 
-            <!-- НОВЫЙ БЛОК: ОТЗЫВЫ -->
+            <!-- ОТЗЫВЫ -->
             <section id="testimonials">
                 <h2>Счастливые родители и дети</h2>
                 <div class="testimonials-grid">
@@ -713,7 +776,7 @@
                 </div>
             </section>
 
-            <!-- НОВЫЙ БЛОК: МАТЕРИАЛЫ -->
+            <!-- МАТЕРИАЛЫ -->
             <section id="materials">
                 <h2>Мои авторские материалы</h2>
                 <div class="materials-showcase">
@@ -744,12 +807,35 @@
                 </div>
             </section>
 
-            <!-- Бронирование Weekify -->
+            <!-- ============================================
+                 БРОНИРОВАНИЕ - ИСПРАВЛЕННАЯ ВЕРСИЯ
+                 ============================================ -->
             <section id="booking">
                 <h2>Запишитесь на пробный</h2>
                 <div class="booking-panel">
+                    <div class="booking-header">
+                        <p>📅 Выберите удобное время для занятия</p>
+                    </div>
                     <div class="booking-frame">
-                        <iframe src="https://weekify.ru/teacher/O.Suvorova" title="Weekify запись"></iframe>
+                        <!-- Iframe с Weekify -->
+                        <iframe 
+                            src="https://weekify.ru/teacher/O.Suvorova" 
+                            title="Запись на занятия - Weekify"
+                            id="weekify-iframe"
+                            allow="clipboard-write"
+                            sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation"
+                        ></iframe>
+                        <!-- Заглушка, если iframe не загрузился -->
+                        <div class="booking-fallback" id="booking-fallback">
+                            <p style="margin-bottom: 1.5rem; color: #5f7d76;">К сожалению, форма записи не загрузилась. Перейдите по кнопке ниже:</p>
+                        </div>
+                    </div>
+                    <!-- Прямая ссылка на бронирование (всегда видна) -->
+                    <div class="booking-direct-link">
+                        <a href="https://weekify.ru/teacher/O.Suvorova" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i>
+                            Открыть форму записи в новой вкладке
+                        </a>
                     </div>
                 </div>
             </section>
@@ -781,95 +867,114 @@
         </div>
     </div>
 
-    <!-- Скрипты -->
+    <!-- ============================================
+         СКРИПТ ЭФФЕКТА БЛЕСТОК (ШАРИКИ ЗА КУРСОРОМ)
+         ============================================ -->
     <script>
-        // Скрипт для блесток (без изменений)
         (function() {
+            // Получаем холст
             const canvas = document.getElementById('sparkle-canvas');
             const ctx = canvas.getContext('2d');
             let width, height;
             let particles = [];
-            const PARTICLE_COUNT = 25;
 
-            function initCanvas() {
-                width = window.innerWidth;
-                height = window.innerHeight;
-                canvas.width = width;
-                canvas.height = height;
-            }
-            initCanvas();
-
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.3,
-                    size: Math.random() * 6 + 3,
-                    color: `hsl(${Math.random() * 30 + 20}, 90%, 70%)`,
-                });
+            // Установка размеров холста
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
             }
 
-            let mouseX = width/2, mouseY = height/2;
-            window.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
+            window.addEventListener('resize', resize);
+            resize();
 
-            function drawParticles() {
-                ctx.clearRect(0, 0, width, height);
-                for (let p of particles) {
-                    const dx = mouseX - p.x;
-                    const dy = mouseY - p.y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 150) {
-                        const force = (150 - dist) / 150 * 0.1;
-                        p.vx += dx * force * 0.02;
-                        p.vy += dy * force * 0.02;
-                    }
+            // Класс частицы (шарика)
+            class Particle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.size = Math.random() * 5 + 2;
+                    this.speedX = Math.random() * 2 - 1;
+                    this.speedY = Math.random() * 2 - 1;
+                    this.color = `hsl(${Math.random() * 60 + 40}, 100%, 50%)`;
+                    this.life = 100;
+                }
 
-                    p.x += p.vx;
-                    p.y += p.vy;
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.life -= 2;
+                    this.size *= 0.95;
+                }
 
-                    if (p.x < 0) p.x = width;
-                    if (p.x > width) p.x = 0;
-                    if (p.y < 0) p.y = height;
-                    if (p.y > height) p.y = 0;
-
-                    p.vx *= 0.98;
-                    p.vy *= 0.98;
-
+                draw() {
+                    ctx.fillStyle = this.color;
                     ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size * 0.7, 0, 2 * Math.PI);
-                    ctx.fillStyle = p.color;
-                    ctx.shadowColor = 'white';
-                    ctx.shadowBlur = 15;
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.arc(p.x-2, p.y-2, p.size * 0.3, 0, 2 * Math.PI);
-                    ctx.fillStyle = 'rgba(255,255,255,0.9)';
-                    ctx.shadowBlur = 20;
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.fill();
                 }
-                requestAnimationFrame(drawParticles);
             }
-            drawParticles();
 
-            window.addEventListener('resize', () => {
-                initCanvas();
+            // Создание частиц при движении мыши
+            window.addEventListener('mousemove', (e) => {
+                for (let i = 0; i < 5; i++) {
+                    particles.push(new Particle(e.x, e.y));
+                }
             });
+
+            // Анимация
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    if (particles[i].life <= 0 || particles[i].size <= 0.5) {
+                        particles.splice(i, 1);
+                        i--;
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            // Плавный скролл для навигации
+            document.querySelectorAll('.nav-links a[href^="#"], .logo a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Закрытие модальных окон
+            document.querySelectorAll('.close-modal').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.hash = '';
+                });
+            });
+
+            // ============================================
+            // ПРОВЕРКА ЗАГРУЗКИ IFRAME (Weekify)
+            // ============================================
+            const iframe = document.getElementById('weekify-iframe');
+            const fallback = document.getElementById('booking-fallback');
+            
+            if (iframe) {
+                // Если iframe не загрузился за 5 секунд, показываем кнопку
+                setTimeout(() => {
+                    if (iframe && !iframe.contentWindow?.document?.body?.children?.length) {
+                        fallback.classList.add('active');
+                    }
+                }, 5000);
+
+                // Обработка ошибок загрузки
+                iframe.addEventListener('error', () => {
+                    fallback.classList.add('active');
+                });
+            }
         })();
-
-        // Плавный скролл
-        document.querySelectorAll('.nav-links a[href^="#"], .logo a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const target = document.querySelector(targetId);
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
     </script>
 </body>
 </html>
