@@ -3,458 +3,872 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English with Olga | Твой репетитор</title>
+    <title>Ольга Суворова | Английский со сверканием</title>
+    <!-- Шрифты и иконки -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --primary: #FF007A; /* Hot Pink */
-            --secondary: #7000FF; /* Electric Purple */
-            --accent: #FFD600; /* Bright Yellow */
-            --dark: #1a1a2e;
-            --light: #ffffff;
-            --gradient: linear-gradient(135deg, var(--secondary), var(--primary));
-            --glass: rgba(255, 255, 255, 0.1);
-        }
-
+        /* Обнуление и базовые настройки */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
-            background-color: var(--dark);
-            color: var(--light);
+            font-family: "Inter", sans-serif;
+            background-color: #fcfcfc;
+            color: #1a2e2a;
+            line-height: 1.5;
+            scroll-behavior: smooth;
             overflow-x: hidden;
-            line-height: 1.6;
         }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        /* --- ANIMATIONS --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        /* Яркая цветовая палитра */
+        :root {
+            --deep-green: #0b7b6b;       /* насыщенный зеленый */
+            --bright-green: #10b090;
+            --neon-orange: #ff8c42;      /* яркий оранжевый */
+            --light-orange: #fff1e0;
+            --soft-bg: #f0f7f4;
+            --card-white: #ffffff;
+            --text-main: #1a2e2a;
+            --shadow-strong: 0 25px 40px -12px rgba(0, 100, 80, 0.25);
+            --shadow-hover: 0 35px 50px -15px rgba(255, 140, 66, 0.35);
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 122, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 0, 122, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 122, 0); }
-        }
-
-        /* --- HEADER --- */
-        header {
-            position: fixed;
+        /* Фиксированная навигация (яркая, полупрозрачная) */
+        .navbar {
+            position: sticky;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(26, 26, 46, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(11, 123, 107, 0.15);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 3px solid var(--neon-orange);
         }
-
-        .logo {
-            font-size: 1.5rem;
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo a {
             font-weight: 800;
-            background: var(--gradient);
+            font-size: 1.9rem;
+            color: var(--deep-green);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--deep-green) 30%, var(--neon-orange) 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            background-clip: text;
         }
-
-        nav ul {
+        .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 2.8rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
-
-        nav a {
+        .nav-links a {
+            text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
-            position: relative;
+            color: #1a2e2a;
+            font-size: 1.1rem;
+            transition: 0.2s;
+            border-bottom: 3px solid transparent;
+            padding-bottom: 5px;
         }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--accent);
-            transition: width 0.3s;
+        .nav-links a:hover {
+            border-bottom-color: var(--neon-orange);
+            color: var(--deep-green);
         }
-
-        nav a:hover { color: var(--accent); }
-        nav a:hover::after { width: 100%; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
+        .nav-contacts {
             display: flex;
+            gap: 1.3rem;
+            font-size: 1.4rem;
+        }
+        .nav-contacts a {
+            color: var(--deep-green);
+            transition: 0.3s;
+            background: var(--light-orange);
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            border-radius: 50%;
+        }
+        .nav-contacts a:hover {
+            background: var(--neon-orange);
+            color: white;
+            transform: rotate(8deg) scale(1.1);
+        }
+        @media (max-width: 750px) {
+            .nav-container { flex-direction: column; gap: 0.5rem; }
+            .nav-links { gap: 1.5rem; justify-content: center; }
+        }
+
+        /* Canvas для частиц (блестки) */
+        #sparkle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .page-wrapper {
             position: relative;
-            background: radial-gradient(circle at 50% 50%, #2a1a4a 0%, var(--dark) 70%);
+            background-color: #fcfcfc;
+            z-index: 1;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 3rem;
+        }
+        section {
+            scroll-margin-top: 90px;
+            position: relative;
+        }
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--deep-green);
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+            display: inline-block;
+            background: linear-gradient(145deg, #1a2e2a 20%, var(--neon-orange) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-left: 10px solid var(--neon-orange);
+            padding-left: 1.5rem;
+        }
+
+        /* ---- ГЕРОЙ С ФОТО ---- */
+        .hero-block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+            background: white;
+            border-radius: 70px 20px 70px 20px;
+            box-shadow: var(--shadow-strong);
+            padding: 3rem 3.5rem;
+            margin: 2rem 0 5rem;
+            border: 2px solid rgba(255, 140, 66, 0.3);
+            position: relative;
             overflow: hidden;
         }
-
-        /* Decorative Blobs */
-        .blob {
+        .hero-block::before {
+            content: '';
             position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #ffd6b0 0%, transparent 70%);
+            top: -50px;
+            right: -50px;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
             z-index: 0;
-            animation: float 6s ease-in-out infinite;
         }
-        .blob-1 { width: 400px; height: 400px; background: var(--secondary); top: -100px; left: -100px; }
-        .blob-2 { width: 300px; height: 300px; background: var(--primary); bottom: -50px; right: -50px; animation-delay: 1s; }
-        .blob-3 { width: 200px; height: 200px; background: var(--accent); top: 40%; left: 60%; animation-delay: 2s; opacity: 0.4; }
-
         .hero-content {
-            z-index: 1;
-            max-width: 800px;
-            padding: 20px;
-            animation: fadeIn 1.2s ease-out;
+            flex: 2 1 350px;
+            position: relative;
+            z-index: 2;
         }
-
-        h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        h1 span {
-            color: var(--accent);
-            display: inline-block;
-            transform: rotate(-3deg);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: #ccc;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--gradient);
+        .hero-badge {
+            background: var(--neon-orange);
             color: white;
-            font-weight: bold;
+            font-weight: 700;
+            padding: 0.3rem 1.5rem;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            border: 2px solid white;
+            box-shadow: 0 4px 0 #b35f1e;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-main);
+        }
+        .hero-highlight {
+            background: linear-gradient(120deg, var(--neon-orange) 0%, var(--neon-orange) 40%, var(--deep-green) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            font-size: 1.3rem;
+            color: #2c4a43;
+            margin: 1.8rem 0 2.5rem;
+            max-width: 550px;
+            background: var(--light-orange);
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-weight: 500;
+        }
+        .btn-primary {
+            background: var(--deep-green);
+            color: white;
+            padding: 1rem 2.8rem;
             border-radius: 50px;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 700;
             border: none;
             cursor: pointer;
-            animation: pulse 2s infinite;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(112, 0, 255, 0.4);
-        }
-
-        /* --- FEATURES / ABOUT --- */
-        .section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            position: relative;
+            transition: 0.25s;
+            box-shadow: 0 12px 20px -10px var(--deep-green);
+            text-decoration: none;
             display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
+            font-size: 1.2rem;
+            border: 2px solid white;
+            outline: 2px solid var(--deep-green);
+        }
+        .btn-primary:hover {
+            background: var(--neon-orange);
+            box-shadow: 0 20px 25px -10px var(--neon-orange);
+            outline-color: var(--neon-orange);
+            transform: scale(1.03);
+        }
+        .hero-photo {
+            flex: 1 1 280px;
+            z-index: 2;
+            filter: drop-shadow(0 20px 25px rgba(0,80,70,0.4));
+        }
+        .photo-frame {
+            width: 300px;
+            height: 300px;
+            border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+            background: linear-gradient(135deg, var(--neon-orange), var(--deep-green));
+            padding: 8px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+            transition: 1s ease;
+            animation: float 6s infinite alternate;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+            display: block;
+            background: #ffe0c0;
+            border: 3px solid white;
+        }
+        @keyframes float {
+            0% { border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%; transform: translateY(0); }
+            100% { border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; transform: translateY(-10px); }
         }
 
-        .section-title::before {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .cards-grid {
+        /* Карточки преимуществ */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-
-        /* --- STATS --- */
-        .stats {
-            background: var(--gradient);
-            padding: 60px 20px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+        .feature-item {
+            background: white;
+            border-radius: 30px;
+            padding: 2.2rem 1.8rem;
+            box-shadow: 0 10px 30px -5px rgba(11, 123, 107, 0.2);
+            transition: 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            border-left: 8px solid var(--neon-orange);
+            border-bottom: 8px solid transparent;
             text-align: center;
-            margin: 50px 0;
-            border-radius: 20px;
         }
-
-        .stat-item h2 {
+        .feature-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-bottom-color: var(--neon-orange);
+            box-shadow: var(--shadow-hover);
+        }
+        .feature-item i {
             font-size: 3rem;
-            font-weight: 800;
+            color: var(--deep-green);
+            background: var(--light-orange);
+            padding: 0.7rem;
+            border-radius: 30px;
+        }
+        .feature-item h3 {
+            font-size: 1.8rem;
+            margin: 1rem 0 0.7rem;
+            color: var(--deep-green);
         }
 
-        .stat-item p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* --- CONTACT --- */
-        .contact-container {
+        /* Кейсы */
+        .cases-showcase {
             display: flex;
+            gap: 2rem;
             flex-wrap: wrap;
-            gap: 50px;
-            justify-content: center;
+            margin: 2rem 0 4rem;
+        }
+        .case-card {
+            background: white;
+            flex: 1 1 220px;
+            border-radius: 40px 20px 40px 20px;
+            padding: 2rem 1.5rem;
+            box-shadow: 12px 12px 0 var(--neon-orange);
+            border: 2px solid var(--deep-green);
+            transition: 0.2s;
+        }
+        .case-card:hover {
+            box-shadow: 18px 18px 0 var(--deep-green);
+            transform: rotate(-0.5deg);
+        }
+        .case-card i {
+            font-size: 3rem;
+            color: var(--neon-orange);
+            -webkit-text-stroke: 1px var(--deep-green);
         }
 
-        .contact-info, .contact-form {
-            flex: 1;
-            min-width: 300px;
+        /* НОВЫЙ БЛОК: ОТЗЫВЫ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0 4rem;
         }
-
-        .contact-item {
-            margin-bottom: 30px;
+        .testimonial-card {
+            background: white;
+            border-radius: 50px 20px 50px 20px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 20px 30px -8px rgba(0,0,0,0.1);
+            border: 3px solid var(--deep-green);
+            transition: 0.3s;
+            position: relative;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.02) rotate(0.5deg);
+            border-color: var(--neon-orange);
+        }
+        .testimonial-card i.fa-quote-left {
+            color: var(--neon-orange);
+            font-size: 2rem;
+            opacity: 0.5;
+            margin-bottom: 0.5rem;
+        }
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin: 1rem 0 1.5rem;
+            color: #2c4a43;
+        }
+        .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 15px;
-            font-size: 1.2rem;
+            gap: 1rem;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--light-orange);
+            border-radius: 40% 60% 40% 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-green);
+            font-weight: bold;
+            border: 2px solid var(--neon-orange);
+        }
+        .author-name {
+            font-weight: 700;
+            color: var(--deep-green);
+        }
+        .author-role {
+            font-size: 0.9rem;
+            color: #5f7d76;
         }
 
-        .contact-item span {
-            color: var(--primary);
-            font-size: 1.5rem;
+        /* НОВЫЙ БЛОК: МАТЕРИАЛЫ */
+        .materials-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0 4rem;
         }
-
-        form input, form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 10px;
+        .material-category {
+            flex: 1 1 200px;
+            background: white;
+            border-radius: 40px 20px 40px 20px;
+            padding: 2rem 1.5rem;
+            border: 3px dashed var(--neon-orange);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .material-category:hover {
+            background: var(--light-orange);
+            border-style: solid;
+            transform: translateY(-8px);
+        }
+        .material-icon {
+            font-size: 3.5rem;
+            color: var(--deep-green);
+            margin-bottom: 1rem;
+        }
+        .material-category h3 {
+            font-size: 1.8rem;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+        }
+        .material-category p {
+            color: #3b6259;
+            font-weight: 500;
+        }
+        .material-tag {
+            display: inline-block;
+            background: var(--neon-orange);
             color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Бронирование */
+        .booking-panel {
+            background: linear-gradient(145deg, #ffffff, #f4fff9);
+            border-radius: 50px;
+            box-shadow: var(--shadow-strong);
+            padding: 2rem;
+            margin: 4rem 0;
+            border: 4px solid var(--deep-green);
+            position: relative;
+        }
+        .booking-frame {
+            border-radius: 40px;
+            overflow: hidden;
+            background: white;
+            height: 580px;
+        }
+        .booking-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Контакты */
+        .contact-big {
+            background: var(--deep-green);
+            border-radius: 100px 20px 100px 20px;
+            padding: 3rem 3rem;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin: 3rem 0 2rem;
+            border: 6px solid var(--neon-orange);
+        }
+        .contact-item {
+            background: white;
+            color: var(--deep-green);
+            padding: 0.8rem 1.8rem;
+            border-radius: 100px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            border: 2px solid var(--neon-orange);
+            text-decoration: none;
+        }
+        .contact-item i {
+            color: var(--neon-orange);
+            font-size: 1.8rem;
+        }
+        .tax-block {
+            background: var(--neon-orange);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Юридические ссылки */
+        .legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+            margin: 4rem 0 1.5rem;
+        }
+        .legal-link {
+            background: transparent;
+            border: 2px solid var(--deep-green);
+            color: var(--deep-green);
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
             font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .legal-link i {
+            color: var(--neon-orange);
+            font-size: 1.3rem;
+        }
+        .legal-link:hover {
+            background: var(--deep-green);
+            color: white;
+        }
+        .legal-link:hover i {
+            color: white;
+        }
+
+        /* Модальные окна */
+        .modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            visibility: hidden;
+            opacity: 0;
             transition: 0.3s;
         }
-
-        form input:focus, form textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(255,255,255,0.1);
+        .modal:target {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            padding: 2.5rem;
+            border-radius: 60px 20px 60px 20px;
+            border: 6px solid var(--neon-orange);
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px; right: 25px;
+            font-size: 2.5rem;
+            color: var(--deep-green);
+            text-decoration: none;
+        }
+        .modal h3 {
+            color: var(--deep-green);
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        /* --- FOOTER --- */
-        footer {
+        .footer-copy {
             text-align: center;
-            padding: 40px;
-            background: #111;
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 50px;
+            margin: 3rem 0 0;
+            color: #2a5a50;
+            font-size: 1rem;
         }
-
-        /* --- MOBILE RESPONSIVE --- */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            header { padding: 15px 20px; }
-            nav { display: none; } /* Simplified for demo */
-            .logo { font-size: 1.2rem; }
+        hr {
+            border: 2px dashed var(--neon-orange);
+            margin: 2rem 0;
         }
     </style>
 </head>
 <body>
+    <!-- Холст для частиц -->
+    <canvas id="sparkle-canvas"></canvas>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">Olga.English for kids</div>
-        <nav>
-            <ul>
-                <li><a href="#about">Обо мне</a></li>
-                <li><a href="#method">Методика</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        
-        <div class="hero-content">
-            <h1>English is not just a subject,<br> it's a <span>superpower</span>.</h1>
-            <p>Учи английский с удовольствием, без зубрежки и скучных учебников. Современный подход для тех, кто хочет говорить свободно.</p>
-            <a href="#contact" class="btn">Записаться на пробный урок</a>
+    <!-- Модальные окна -->
+    <div id="privacy" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <h3>Политика конфиденциальности</h3>
+            <p>Ваши персональные данные (имя, телефон, e-mail) обрабатываются исключительно для записи на занятия и связи с вами. Я не передаю данные третьим лицам. Используя форму бронирования, вы соглашаетесь с этой политикой.</p>
         </div>
-    </section>
-
-    <!-- About / Features -->
-    <section id="about" class="section">
-        <h2 class="section-title">Почему выбирают меня?</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon">🚀</div>
-                <h3>Быстрый старт</h3>
-                <p>Начнешь говорить первые фразы уже на первом занятии. Убираем языковой барьер с первых минут.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🎬</div>
-                <h3>Контент, а не учебник</h3>
-                <p>Учим язык на сериалах, мемах, музыке и статьях из Forbes. Никакой "London is the capital".</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🧠</div>
-                <h3>Нейроподход</h3>
-                <p>Используем мнемотехники и ассоциации, чтобы слова запоминались сами собой и навсегда.</p>
-            </div>
+    </div>
+    <div id="offer" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <h3>Договор-оферта</h3>
+            <p>Оплата занятий означает полное и безоговорочное принятие условий договора-оферты. Занятия проводятся согласно выбранному тарифу. Отмена и перенос — не позднее чем за 8 часов. Полный текст договора высылается по запросу.</p>
         </div>
-    </section>
-
-    <!-- Stats -->
-    <div class="stats">
-        <div class="stat-item">
-            <h2>500+</h2>
-            <p>Довольных учеников</p>
-        </div>
-        <div class="stat-item">
-            <h2>7+</h2>
-            <p>Лет опыта</p>
-        </div>
-        <div class="stat-item">
-            <h2>100%</h2>
-            <p>Результат</p>
+    </div>
+    <div id="consent" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <h3>Согласие на обработку данных</h3>
+            <p>Нажимая кнопку «Записаться» или отправляя заявку, вы даёте согласие на обработку персональных данных (ФИО, контакты) для оказания услуг репетитора. Согласие может быть отозвано в любой момент.</p>
         </div>
     </div>
 
-    <!-- Methodology -->
-    <section id="method" class="section">
-        <h2 class="section-title">Как проходят уроки?</h2>
-        <div class="cards-grid">
-            <div class="card" style="border-color: var(--secondary);">
-                <h3>🎯 Индивидуальная программа</h3>
-                <p>Мы не идем по шаблону. Программа строится под твои цели: переезд, работа, путешествия или IT.</p>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="#home">Ольга Суворова</a></div>
+            <div class="nav-links">
+                <a href="#about">Обо мне</a>
+                <a href="#results">Кейсы</a>
+                <a href="#testimonials">Отзывы</a>
+                <a href="#materials">Материалы</a>
+                <a href="#booking">Бронь</a>
+                <a href="#contacts">Контакты</a>
             </div>
-            <div class="card" style="border-color: var(--primary);">
-                <h3>💬 80% Speaking</h3>
-                <p>На моих уроках говоришь ТЫ. Я лишь направляю и корректирую. Практика — это ключ.</p>
-            </div>
-            <div class="card" style="border-color: var(--accent); color: var(--dark);">
-                <h3 style="color: var(--dark);">📱 Поддержка 24/7</h3>
-                <p style="color: #333;">Чат в Telegram, где я отвечаю на вопросы, проверяю домашку и кидаю полезные материалы.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section">
-        <h2 class="section-title">Let's start!</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>📍</span> Онлайн (Zoom / Skype)
-                </div>
-                <div class="contact-item">
-                    <span>📧</span> hello@anna-english.ru
-                </div>
-                <div class="contact-item">
-                    <span>📱</span> +7 (999) 000-00-00
-                </div>
-                <div class="contact-item">
-                    <span>✈️</span> @anna_english_tg
-                </div>
-                <p style="margin-top: 30px; color: #aaa;">
-                    Первый пробный урок (20 мин) — бесплатно. Обсудим твои цели и составим план обучения.
-                </p>
-            </div>
-            
-            <div class="contact-form">
-                <form>
-                    <input type="text" placeholder="Твое имя" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea rows="5" placeholder="Твоя цель (например: хочу смотреть Netflix без субтитров)"></textarea>
-                    <button type="submit" class="btn" style="width: 100%; animation: none;">Отправить заявку</button>
-                </form>
+            <div class="nav-contacts">
+                <a href="https://vk.com/suvorova_o" target="_blank"><i class="fab fa-vk"></i></a>
+                <a href="https://t.me/o_suvor" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2023 Anna English Tutor. All rights reserved.</p>
-        <p>Made with ❤️ and Coffee.</p>
-    </footer>
+    <!-- Основной контент -->
+    <div class="page-wrapper">
+        <div class="container">
+            <!-- Секция с фото (home) -->
+            <section id="home">
+                <div class="hero-block">
+                    <div class="hero-content">
+                        <span class="hero-badge">15+ лет зажигаю интерес</span>
+                        <h1>Английский <span class="hero-highlight">без тормозов</span> для детей 7–18</h1>
+                        <p class="hero-desc">✨ Перестают бояться, начинают говорить. Офлайн (Челябинск) / онлайн. Современные инструменты, нейросети, игры.</p>
+                        <a href="#booking" class="btn-primary"><i class="fas fa-calendar-star"></i> Выбрать время</a>
+                    </div>
+                    <div class="hero-photo">
+                        <div class="photo-frame">
+                            <!-- ⚠️ ВСТАВЬТЕ ССЫЛКУ НА ВАШЕ ФОТО ИЗ ВК В src -->
+                            <img src="https://sun9-37.userapi.com/s/v1/ig2/Zx29c_NDWg3Acb56a78_2mggBS1Zst9upn5S0tRan0AEkeDD0KLeAqVGCf9Kr8aiSHrQ9K6-OTWOJWcboVxXDEaU.jpg?quality=95&as=32x38,48x57,72x86,108x129,160x191,240x287,360x430,480x574,540x646,640x765,720x861,1080x1291,1280x1531,1440x1722&from=bu&cs=1440x0" alt="Ольга Суворова">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            <!-- О себе и преимущества -->
+            <section id="about">
+                <h2>Почему ко мне не боятся</h2>
+                <div class="features-grid">
+                    <div class="feature-item"><i class="fas fa-magic"></i><h3>Игры+AI</h3><p>Красочные презентации, воркшиты, тесты, нейросети — учусь сама, чтобы удивлять.</p></div>
+                    <div class="feature-item"><i class="fas fa-heart"></i><h3>Без страха</h3><p>Ошибаться — ок, говорить — легко. Дети влюбляются в язык.</p></div>
+                    <div class="feature-item"><i class="fas fa-file-signature"></i><h3>Официально</h3><p>Договор, возврат 13% налога. Платите — и спите спокойно.</p></div>
+                    <div class="feature-item"><i class="fas fa-rocket"></i><h3>ОГЭ/ЕГЭ</h3><p>Кейсы с высокими баллами. Поступление в вузы мечты.</p></div>
+                </div>
+            </section>
+
+            <!-- Кейсы результатов -->
+            <section id="results">
+                <h2>Цифры и истории</h2>
+                <div class="cases-showcase">
+                    <div class="case-card"><i class="fas fa-star"></i><h3>ОГЭ на 5</h3><p>90% учеников сдают ОГЭ на отлично. Остальные — крепкие 4.</p></div>
+                    <div class="case-card"><i class="fas fa-gem"></i><h3>ЕГЭ 80+</h3><p>Результаты, которые открывают двери в топ-вузы.</p></div>
+                    <div class="case-card"><i class="fas fa-face-smile"></i><h3>Заговорили</h3><p>Самые стеснительные начинают болтать через месяц.</p></div>
+                </div>
+            </section>
+
+            <!-- НОВЫЙ БЛОК: ОТЗЫВЫ -->
+            <section id="testimonials">
+                <h2>Счастливые родители и дети</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="testimonial-text">"Дочь перестала бояться говорить! Занятия ждёт с нетерпением. Огромное спасибо за ваш подход и современные материалы."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">М</div>
+                            <div>
+                                <div class="author-name">Мария, мама Софии (10 лет)</div>
+                                <div class="author-role">занимается 6 месяцев</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="testimonial-text">"Сын сдал ОГЭ на 5, хотя в школе была твёрдая 3. Ольга смогла найти подход и влюбить в английский. Спасибо!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">А</div>
+                            <div>
+                                <div class="author-name">Алексей, папа Артёма (15 лет)</div>
+                                <div class="author-role">ОГЭ 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="testimonial-text">"Очень нравится, что всё современно: презентации, игры, даже нейросети! Ребёнок в восторге, а я спокойна за результат."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">Е</div>
+                            <div>
+                                <div class="author-name">Елена, мама Кирилла (8 лет)</div>
+                                <div class="author-role">онлайн-занятия</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- НОВЫЙ БЛОК: МАТЕРИАЛЫ -->
+            <section id="materials">
+                <h2>Мои авторские материалы</h2>
+                <div class="materials-showcase">
+                    <div class="material-category">
+                        <div class="material-icon"><i class="fas fa-file-powerpoint"></i></div>
+                        <h3>Презентации</h3>
+                        <p>Красочные, анимированные, с персонажами — каждая тема становится приключением</p>
+                        <span class="material-tag">100+ тем</span>
+                    </div>
+                    <div class="material-category">
+                        <div class="material-icon"><i class="fas fa-puzzle-piece"></i></div>
+                        <h3>Воркшиты + игры</h3>
+                        <p>Интерактивные листы, онлайн-квизы, свои игры на платформах</p>
+                        <span class="material-tag">свои разработки</span>
+                    </div>
+                    <div class="material-category">
+                        <div class="material-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Нейросети + AI</h3>
+                        <p>Создаю тесты и задания с помощью ИИ, учу детей использовать современные технологии</p>
+                        <span class="material-tag">актуально</span>
+                    </div>
+                    <div class="material-category">
+                        <div class="material-icon"><i class="fas fa-laptop"></i></div>
+                        <h3>Онлайн-платформы</h3>
+                        <p>Интерактивные курсы, отслеживание прогресса, личный кабинет</p>
+                        <span class="material-tag">24/7 доступ</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Бронирование Weekify -->
+            <section id="booking">
+                <h2>Запишитесь на пробный</h2>
+                <div class="booking-panel">
+                    <div class="booking-frame">
+                        <iframe src="https://weekify.ru/teacher/O.Suvorova" title="Weekify запись"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Контакты и соцсети -->
+            <section id="contacts">
+                <h2>Всегда на связи</h2>
+                <div class="contact-big">
+                    <a href="tel:+79511134760" class="contact-item"><i class="fas fa-phone"></i> +7 951 11 34 760</a>
+                    <a href="https://t.me/o_suvor" target="_blank" class="contact-item"><i class="fab fa-telegram"></i> @o_suvor</a>
+                    <a href="https://vk.com/suvorova_o" target="_blank" class="contact-item"><i class="fab fa-vk"></i> suvorova_o</a>
+                    <span class="tax-block"><i class="fas fa-percent"></i> 13% вычет</span>
+                </div>
+                <div style="text-align: center; margin: 1.5rem 0;">
+                    <span style="background: var(--light-orange); padding: 0.7rem 2rem; border-radius: 100px;"><i class="fas fa-map-pin"></i> Челябинск (офлайн) и вся планета (онлайн)</span>
+                </div>
+            </section>
+
+            <!-- Юридические ссылки и футер -->
+            <hr>
+            <div class="legal-links">
+                <a href="#privacy" class="legal-link"><i class="fas fa-shield-alt"></i> Политика конфиденциальности</a>
+                <a href="#offer" class="legal-link"><i class="fas fa-file-contract"></i> Договор-оферта</a>
+                <a href="#consent" class="legal-link"><i class="fas fa-user-check"></i> Согласие на обработку</a>
+            </div>
+            <div class="footer-copy">
+                ⚡ Ольга Суворова | English tutor | 7–18 лет ⚡
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипты -->
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Скрипт для блесток (без изменений)
+        (function() {
+            const canvas = document.getElementById('sparkle-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            const PARTICLE_COUNT = 25;
 
-        // Simple form submission alert (for demo purposes)
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Спасибо! Заявка отправлена. Я свяжусь с тобой в ближайшее время! 🚀');
-            this.reset();
+            function initCanvas() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+            initCanvas();
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    size: Math.random() * 6 + 3,
+                    color: `hsl(${Math.random() * 30 + 20}, 90%, 70%)`,
+                });
+            }
+
+            let mouseX = width/2, mouseY = height/2;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, width, height);
+                for (let p of particles) {
+                    const dx = mouseX - p.x;
+                    const dy = mouseY - p.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 150) {
+                        const force = (150 - dist) / 150 * 0.1;
+                        p.vx += dx * force * 0.02;
+                        p.vy += dy * force * 0.02;
+                    }
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+
+                    p.vx *= 0.98;
+                    p.vy *= 0.98;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * 0.7, 0, 2 * Math.PI);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowColor = 'white';
+                    ctx.shadowBlur = 15;
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(p.x-2, p.y-2, p.size * 0.3, 0, 2 * Math.PI);
+                    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+                    ctx.shadowBlur = 20;
+                    ctx.fill();
+                }
+                requestAnimationFrame(drawParticles);
+            }
+            drawParticles();
+
+            window.addEventListener('resize', () => {
+                initCanvas();
+            });
+        })();
+
+        // Плавный скролл
+        document.querySelectorAll('.nav-links a[href^="#"], .logo a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
         });
     </script>
 </body>
